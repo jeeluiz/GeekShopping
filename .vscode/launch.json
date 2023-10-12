@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "name": "C#: GeekShopping.ProductAPI",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}\\GeekShopping.ProductAPI\\GeekShopping.ProductAPI.csproj",
+            "launchConfigurationId": "TargetFramework=;GeekShopping.ProductAPI"
+        },
+        {
+            "name": "C#: GeekShopping.Web",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}\\GeekShopping.Web\\GeekShopping.Web.csproj",
+            "launchConfigurationId": "TargetFramework=;GeekShopping.Web"
+        }
+    ]
+}

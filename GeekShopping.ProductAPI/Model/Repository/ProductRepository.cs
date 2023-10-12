@@ -39,6 +39,7 @@ namespace GeekShopping.ProductAPI.Model.Repository
             }
             catch (Exception)
             {
+                Console.WriteLine("asd");
                 return false;
             }
         }
