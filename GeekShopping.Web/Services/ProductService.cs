@@ -1,10 +1,17 @@
-﻿using GeekShopping.Web.Utils;
+﻿using GeekShopping.Web.Models;
+using GeekShopping.Web.Utils;
 
 namespace GeekShopping.Web.Services
 {
     public class ProductService : IProductService
     {
         private readonly HttpClient _client;
+
+        public ProductService(HttpClient client)
+        {
+            _client = client;
+        }
+
         public const string BasePath = "api/v1/product";
 
 

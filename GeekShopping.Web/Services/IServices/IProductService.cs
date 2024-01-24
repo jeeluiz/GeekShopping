@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.Eventing.Reader;
+﻿using GeekShopping.Web.Models;
 
 namespace GeekShopping.Web;
 
