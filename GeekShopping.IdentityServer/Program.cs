@@ -1,4 +1,5 @@
 using GeekShopping.IdentityServer.Configuration;
+using GeekShopping.IdentityServer.Initializer;
 using GeekShopping.IdentityServer.Model;
 using GeekShopping.IdentityServer.Model.Context;
 using Microsoft.AspNetCore.Identity;
@@ -21,6 +22,8 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<MySQLContext>()
     .AddDefaultTokenProviders();
 
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();
+
 var erros = builder.Services.AddIdentityServer(options =>
 {
     options.Events.RaiseErrorEvents = true;
@@ -39,6 +42,16 @@ erros.AddDeveloperSigningCredential();
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var initializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+    initializer.Initialize();
+}
+
+
+//var initializer = app.Services.CreateScope().ServiceProvider.GetService<IDbInitializer>();
+
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -48,9 +61,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseStaticFiles();
-
 app.UseRouting();
 app.UseIdentityServer();
 app.UseAuthorization();
